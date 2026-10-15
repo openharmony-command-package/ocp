@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "com.richerfu.ocp",
+    "vendor": "ocp",
+    "versionCode": 8,
+    "versionName": "0.5.0",
+    "icon": "$media:ocp",
+    "label": "$string:app_name"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ocp",
+  "version": "0.5.0",
+  "bootstrap": true,
+  "source_dir": "build/runtime/{abi}",
+  "commands": {"ocp": "ocp.sh", "ocp-maker": "ocp-maker", "ocp-bm": "ocp-bm"},
+  "command_types": {"ocp": "script"}
+}

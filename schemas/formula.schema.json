@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"OCP component formula","type":"object","required":["name","version","commands"],
+  "oneOf":[{"required":["assets"]},{"required":["source_dir"]}],
+  "properties":{
+    "name":{"type":"string","pattern":"^[A-Za-z0-9_-]+$"},
+    "version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "bootstrap":{"type":"boolean"},"source_dir":{"type":"string"},
+    "publisher":{"type":"object","required":["name"],"properties":{"name":{"type":"string","minLength":1,"maxLength":128},"url":{"type":"string","pattern":"^https?://"}}},
+    "commands":{"type":"object","minProperties":1,"propertyNames":{"pattern":"^[A-Za-z0-9_][A-Za-z0-9_.+-]*$"},"additionalProperties":{"type":"string"}},
+    "assets":{"type":"object","propertyNames":{"enum":["arm64-v8a","x86_64","armeabi-v7a"]},"additionalProperties":{"type":"object","required":["url","sha256","root"],"properties":{
+      "url":{"type":"string","pattern":"^https?://"},"sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"root":{"type":"string"}
+    }}}
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HarmonyOS 模拟器本地执行"
+  short_description: "在 DevEco 模拟器中排查并验证弱沙箱 PTY 的本地编译与执行"
+  default_prompt: "使用 $harmonyos-emulator-native-exec 排查模拟器中实时编译 ELF 无法执行的问题，并在应用真实 PTY 中完成验证。"

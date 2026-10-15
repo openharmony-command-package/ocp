@@ -1,0 +1,9 @@
+.cache/
+build/
+dist/
+target/
+__pycache__/
+*.pyc
+signing.local.json
+
+.DS_Store

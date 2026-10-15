@@ -1,0 +1,6 @@
+{
+  "string": [
+    {"name": "app_name", "value": "OCP"},
+    {"name": "documents_reason", "value": "在专用测试目录验证编译产物的签名与执行，仅创建并删除本次测试文件"}
+  ]
+}

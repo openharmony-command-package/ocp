@@ -1,0 +1,6 @@
+{
+  "name":"hello","version":"0.1.0","bootstrap":false,
+  "publisher":{"name":"OCP Community Example"},
+  "source_dir":"build/example-tap/hello/{abi}",
+  "commands":{"ocp-hello":"ocp-hello"}
+}

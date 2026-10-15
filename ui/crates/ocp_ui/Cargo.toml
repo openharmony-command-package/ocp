@@ -1,0 +1,23 @@
+[package]
+name = "ocp_ui"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+arkit = { workspace = true, features = ["shadcn"] }
+ocp_client.workspace = true
+tokio.workspace = true
+napi-ohos.workspace = true
+napi-derive-ohos.workspace = true
+
+[build-dependencies]
+napi-build-ohos.workspace = true
+
+[lints]
+workspace = true

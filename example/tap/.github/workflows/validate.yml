@@ -1,0 +1,30 @@
+name: Validate OCP formulas
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the contributor tree
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: tap
+          persist-credentials: false
+      - name: Check out reviewed OCP tooling
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: ${{ vars.OCP_TOOLS_REPOSITORY }}
+          ref: ${{ vars.OCP_TOOLS_REV }}
+          path: ocp
+          persist-credentials: false
+      - name: Require a pinned tooling revision
+        env:
+          OCP_TOOLS_REV: ${{ vars.OCP_TOOLS_REV }}
+        run: |
+          python3 -c 'import os,re; assert re.fullmatch(r"[0-9a-f]{40}", os.environ["OCP_TOOLS_REV"]), "Pin OCP_TOOLS_REV to a reviewed commit"'
+      - name: Validate metadata without executing contributor scripts
+        run: python3 ocp/scripts/check-formulas.py --root tap

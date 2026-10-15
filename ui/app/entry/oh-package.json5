@@ -1,0 +1,7 @@
+{
+  "name":"entry","version":"0.5.0",
+  "dependencies":{
+    "libocp_ui.so":"file:./src/main/cpp/types/libocp_ui",
+    "@ohos-rs/ability":"file:../../native_ability"
+  }
+}
