@@ -6,6 +6,8 @@
 
 ## 构建与签名
 
+管理器工程的最低版本为 HarmonyOS `6.1.1(24)`（API 24），编译和目标版本保持 API 26。需要随管理器一起安装 Zig 时，使用下方的单 HAP 组装流程。
+
 先设置目标模拟器的 UDID。它与 HDC target `127.0.0.1:10090` 是不同标识。SDK 公共调试密钥只用于该模拟器。
 
 ```sh
@@ -21,6 +23,24 @@ hdc -s 127.0.0.1:8710 -t 127.0.0.1:10090 install -r dist/arm64-v8a/ocp-manager-d
 ```
 
 旧 unsigned 管理应用迁移到新签名时，系统可能要求先卸载旧应用。先备份其私有注册与设置，避免丢失个人来源。两个宿主均声明 BM、外部 Native Code 和网络权限，使用普通应用 profile；权限适用范围见 [设备后端文档](../docs/device-backend.md)。
+
+## 内置工具的单 HAP
+
+需要安装 OCP 时同时提供 Zig 等工具，可把已校验 Bottle 中的工具 HNP 与管理器装入同一个 HAP：
+
+```sh
+python3 ui/bundle.py \
+  --manager-hap dist/arm64-v8a/ocp-manager-unsigned.hap \
+  --tool-bottle dist/bottles/arm64-v8a/zig/0.17.0 \
+  --output dist/arm64-v8a/ocp-manager-with-zig-0.17.0-debug.hap \
+  --debug-udid "$OCP_EMULATOR_UDID"
+```
+
+`--tool-bottle` 可重复传入；构建器校验 HAP hash、工具身份、ABI 和命令冲突，并保留管理 UI 的单一桌面入口。输出旁保存组装报告和 SHA-256；省略签名参数则仅生成未签名产物。
+
+只提供内置 Zig 环境时，加上 `--no-permissions` 可移除最终合并清单中的全部权限，包括依赖引入的窗口权限。此模式不为应用申请网络、BM 或外部 Native Code 权限，适用于不调用动态包管理的环境包；普通动态管理器保留原权限配置。
+
+这是内置工具发行包：系统安装 OCP 时直接安装这些 HNP，工具生命周期随 OCP，不属于由独立工具 bundle 管理的常规安装。不要同时安装导出同名命令的独立 Zig 包；如已安装，应先卸载该工具包再安装内置版。若需要单独安装、升级和卸载 Zig，使用普通管理器与独立 Bottle 流程。终端仍需包含 `/data/service/hnp/bin` 的 PATH；实时编译产物的执行条件见下文的弱沙箱验证。
 
 ## 静态下载服务
 
