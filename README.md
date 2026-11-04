@@ -27,7 +27,7 @@ ocp upgrade core/zig
 ocp uninstall core/zig
 ```
 
-[OCP Repository](https://github.com/harmony-contrib/ocp-repo) maintains the supported tool recipes, starting with Zig. A Git repository URL is different from the downloadable package index URL.
+[OCP Repository](https://github.com/openharmony-command-package/ocp-repo) maintains the supported tool recipes, starting with Zig. A Git repository URL is different from the downloadable package index URL.
 
 OCP is currently a development preview. Device validation uses the DevEco ARM64 2in1 emulator; setup and platform requirements are documented in the guides below.
 
@@ -36,12 +36,13 @@ OCP is currently a development preview. Device validation uses the DevEco ARM64 
 - [Build and test OCP](example/README.md)
 - [App interface and interaction](docs/ui.md)
 - [Repository registration and storage](docs/repositories.md)
-- [Contribute tool packages](https://github.com/harmony-contrib/ocp-repo/blob/main/CONTRIBUTING.md)
+- [Contribute tool packages](https://github.com/openharmony-command-package/ocp-repo/blob/main/CONTRIBUTING.md)
 - [Create a community repository](docs/contributing-taps.md)
 - [Device installation requirements](docs/device-backend.md)
+- [Native compilation and execution on devices](docs/native-execution.md)
 - [HarmonyOS emulator native execution skill](skills/harmonyos-emulator-native-exec/SKILL.md)
 
-Tool recipes and releases belong in [ocp-repo](https://github.com/harmony-contrib/ocp-repo). Changes to the app, CLI, packaging toolkit, and repository protocol belong here.
+Tool recipes and releases belong in [ocp-repo](https://github.com/openharmony-command-package/ocp-repo). Changes to the app, CLI, packaging toolkit, and repository protocol belong here.
 
 ## License
 

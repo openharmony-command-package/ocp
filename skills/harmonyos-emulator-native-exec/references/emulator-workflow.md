@@ -281,7 +281,7 @@ chmod 700 ./custom-policy-shell
 | 现象 | 下一步 |
 | --- | --- |
 | chmod、自签名后仍 AccessDenied | 核对真正的域和 AVC，不重复增加执行位 |
-| 权限已授予，域仍为 normal_hap | 查产品参数、AppMgr 消息 bit 31、AppSpawn bit 16 转换和 debug 构建属性 |
+| 权限已授予，域仍为 normal_hap | 查产品参数、AppMgr 消息 bit 31、AppSpawn 的 SELinux 标志掩码 0x10 转换和 debug 构建属性 |
 | 配置文件有 true，但重启仍不生效 | 查 private/public 分类、进程缓存及实际启动器是否重建覆盖文件 |
 | `BinarySourceScope of undefined` | 记录 HMS Native 模块缺失和 setter 前失败，停止重复认证 |
 | 启动镜像完整性错误 | 恢复原基础镜像；确认只修改实例覆盖文件 |

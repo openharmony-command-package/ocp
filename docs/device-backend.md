@@ -34,6 +34,10 @@ OCP 0.5.0 默认在设备调用 BMS。CLI 和 Arkit UI 使用同一条安装路�
 
 ## 原生代码执行
 
+真机的宿主授权、ad-hoc 签名、系统验证及执行域转换已按源码和所提供 MateBook 固件整理为 [真机本地编译与执行方案](native-execution.md)。该方案与下面的模拟器 debug 验证分别记录；普通应用不能直接使用系统 `SignLocalCode` 服务。
+
+2026-10-15，用户确认此前讨论的 API24 真机在对现场生成的缓存 Maker 手工自签名后，重试 `zig init` 可以成功。该结果来自用户反馈，尚未采集该设备的完整执行日志；Zig 工具链尚未接入自动签名，空缓存下无需手工干预的 `init/build/test/run` 流程仍需完成适配和验收。
+
 已安装工具的 PTY 执行与实时编译 ELF 的执行条件不同。OCP/example 的普通应用域验证在 PTY 编译 C、Zig 和 C++，再通过模拟器 HDC 调试目录运行产物。下述 OHOSTTY 隔离开发实例则已验证在应用 PTY 原地编译并运行；两组结果适用的宿主和执行域不同。
 
 Zig 0.17.0 的 `init` 等命令还会现场编译并执行缓存中的 Maker，见 [Zig 官方构建系统说明](https://ziglang.org/devlog/2026/#all-package-management-functionality-moved-from-compiler-to-build-system)。因此，`zig version` 或 `zig cc` 编译成功不能证明 `zig init`、完整 `zig build` 已可用。

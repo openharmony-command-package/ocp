@@ -8,4 +8,4 @@ The bootstrap runtime uses an adapted Zig Maker, nlohmann/json, and OpenHarmony 
 
 The management app uses Arkit and Rust dependencies declared in [ui/Cargo.toml](ui/Cargo.toml) and pinned in [ui/Cargo.lock](ui/Cargo.lock). Consult each dependency's source distribution for its license and any additional notices. The generated runtime notices are not a complete inventory of the app's dependencies.
 
-Downloadable tool recipes and their upstream license information are maintained separately in [ocp-repo](https://github.com/harmony-contrib/ocp-repo). Redistributing a tool or an OCP build must preserve the notices required by the components actually included; OCP's MIT license does not relicense those components.
+Downloadable tool recipes and their upstream license information are maintained separately in [ocp-repo](https://github.com/openharmony-command-package/ocp-repo). Redistributing a tool or an OCP build must preserve the notices required by the components actually included; OCP's MIT license does not relicense those components.

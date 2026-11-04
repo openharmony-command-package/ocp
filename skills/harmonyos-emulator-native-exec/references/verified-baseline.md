@@ -40,7 +40,7 @@ permissive=0
 ## 启动链路中的三个条件
 
 1. AppMgr 的 `SetStartMsgCustomSandboxFlag` 受 `persist.sys.abilityms.start_options_with_animation` 门控，已审计 SDK 默认关闭。
-2. AppMgr 验证 CUSTOM_SANDBOX 后可传入消息标志 bit 31；已审计 SDK 的 AppSpawn 库缺少把该标志转换为 `SELINUX_HAP_CUSTOM_SANDBOX` bit 16 的条件分支。
+2. AppMgr 验证 CUSTOM_SANDBOX 后可传入消息标志 bit 31；已审计 SDK 的 AppSpawn 库缺少把该标志转换为 `SELINUX_HAP_CUSTOM_SANDBOX` 掩码 `0x10`（十进制 16，位索引 4）的条件分支。
 3. 只有真正的 debug HAP 才进入本次验证使用的开发执行域。调试 profile、`aa start -D` 和 release HAP 的组合不能替代 debug 构建。
 
 对照来源：

@@ -8,4 +8,4 @@ OCP 的 [MIT 许可证](LICENSE) 覆盖本仓库的原创代码与文档。第�
 
 管理应用使用 Arkit 及 Rust 依赖，依赖声明见 [ui/Cargo.toml](ui/Cargo.toml)，固定版本见 [ui/Cargo.lock](ui/Cargo.lock)。各依赖的许可证与附加声明以其源码发行内容为准。运行时生成的许可文件并不是应用依赖的完整清单。
 
-可下载工具的配方与上游许可信息在 [ocp-repo](https://github.com/harmony-contrib/ocp-repo) 单独维护。再分发工具或 OCP 构建产物时，需要保留实际包含组件所要求的声明；OCP 的 MIT 许可证不会重新授权这些组件。
+可下载工具的配方与上游许可信息在 [ocp-repo](https://github.com/openharmony-command-package/ocp-repo) 单独维护。再分发工具或 OCP 构建产物时，需要保留实际包含组件所要求的声明；OCP 的 MIT 许可证不会重新授权这些组件。

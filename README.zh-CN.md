@@ -27,7 +27,7 @@ ocp upgrade core/zig
 ocp uninstall core/zig
 ```
 
-[OCP Repository](https://github.com/harmony-contrib/ocp-repo) 维护支持的工具配方，目前先提供 Zig。Git 仓库地址与可下载的软件包索引地址不同。
+[OCP Repository](https://github.com/openharmony-command-package/ocp-repo) 维护支持的工具配方，目前先提供 Zig。Git 仓库地址与可下载的软件包索引地址不同。
 
 OCP 当前为开发预览版。设备验证使用 DevEco ARM64 2in1 模拟器，部署条件与平台要求见下方文档。
 
@@ -36,12 +36,13 @@ OCP 当前为开发预览版。设备验证使用 DevEco ARM64 2in1 模拟器，
 - [构建和验证 OCP](example/README.md)
 - [应用界面与交互](docs/ui.md)
 - [仓库注册与存储](docs/repositories.md)
-- [贡献工具包](https://github.com/harmony-contrib/ocp-repo/blob/main/CONTRIBUTING.zh-CN.md)
+- [贡献工具包](https://github.com/openharmony-command-package/ocp-repo/blob/main/CONTRIBUTING.zh-CN.md)
 - [创建社区仓库](docs/contributing-taps.md)
 - [设备安装条件](docs/device-backend.md)
+- [真机本地编译与执行方案](docs/native-execution.md)
 - [鸿蒙模拟器本地编译与执行 Skill](skills/harmonyos-emulator-native-exec/SKILL.md)
 
-工具配方和发布内容在 [ocp-repo](https://github.com/harmony-contrib/ocp-repo) 维护；应用、CLI、打包工具和仓库协议的改动在本仓库维护。
+工具配方和发布内容在 [ocp-repo](https://github.com/openharmony-command-package/ocp-repo) 维护；应用、CLI、打包工具和仓库协议的改动在本仓库维护。
 
 ## 许可证
 
