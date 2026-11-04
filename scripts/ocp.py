@@ -136,12 +136,34 @@ def component_source(component, abi):
             shutil.rmtree(extraction)
         extraction.mkdir(parents=True)
         with tarfile.open(archive) as tar:
-            # Toolchain archives contain only regular files and directories.
-            for member in tar.getmembers():
-                relative_path(member.name)
-                if not (member.isfile() or member.isdir()):
+            members = tar.getmembers()
+            entries = {}
+            for member in members:
+                name = str(relative_path(member.name))
+                if name in entries:
+                    raise ValueError(f"Duplicate archive member: {member.name}")
+                if not (member.isfile() or member.isdir() or member.islnk()):
                     raise ValueError(f"Unsupported archive member: {member.name}")
-            tar.extractall(extraction)
+                entries[name] = member
+            # Go archives share compiler wrappers through hard links. Only allow
+            # direct references to regular files in this verified archive.
+            for member in members:
+                for parent in relative_path(member.name).parents:
+                    ancestor = entries.get(str(parent))
+                    if ancestor is not None and not ancestor.isdir():
+                        raise ValueError(f"Archive member has a non-directory parent: {member.name}")
+                if member.islnk():
+                    target = entries.get(str(relative_path(member.linkname)))
+                    if target is None or not target.isfile():
+                        raise ValueError(f"Invalid archive hard link: {member.name}")
+            tar.extractall(extraction, members=[member for member in members if not member.islnk()])
+            for member in members:
+                if member.islnk():
+                    destination = extraction / relative_path(member.name)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    # Materialize links as files so later packaging does not
+                    # depend on archive ordering or shared filesystem inodes.
+                    shutil.copy2(extraction / relative_path(member.linkname), destination)
         (extraction / ".complete").touch()
     return source, asset
 

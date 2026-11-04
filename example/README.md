@@ -62,6 +62,7 @@ python3 ui/build.py configure --target 127.0.0.1:10090 \
 python3 example/native_lifecycle.py --target 127.0.0.1:10090
 python3 example/ui_verify.py --target 127.0.0.1:10090
 python3 example/native_payload_test.py
+python3 example/component_source_test.py
 ```
 
 CLI 测试在真实应用 forkpty 中执行安装 0.16.0、升级 0.17.0、卸载、断网模式下从缓存重装、跨宿主状态同步、第三方工具安装与命令执行，另外检查索引原子更新和非工具 bundle 卸载保护。测试结束恢复 Zig 0.17.0，并卸载测试用 community/hello，供 UI 流程重新安装。
@@ -69,6 +70,8 @@ CLI 测试在真实应用 forkpty 中执行安装 0.16.0、升级 0.17.0、卸�
 UI 自动化使用设备 uitest 操作实际 Arkit shadcn 控件，覆盖卸载取消、卸载、安装、更新、仓库注册、第三方命令、关于页七次点击进入 Debug 和编译测试。设备工具操作通过 BMS 完成，测试脚本仅用 HDC 准备与观察。输入步骤验证输入框内容，处理模拟器输入法的 ASCII 模式，并恢复临时设置。
 
 报告分别保存到 `dist/arm64-v8a/native-lifecycle.json`、`ui-verification.json` 和 example/build 对应运行目录；UI 截图在 `example/build/ui/<run>/`。原生 payload 校验测试覆盖身份、版本、UI、权限、ABI、保留命令、路径穿越、重复 ZIP/JSON 字段与截断数据。
+
+源归档校验在主机运行，覆盖普通文件、归档内部硬链接，以及越界路径、非法目标、符号链接、重复条目和非目录父路径的拒绝行为。Go 工具链的内部硬链接在解包时转为独立普通文件。
 
 ## 编译与执行限制
 
